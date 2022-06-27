@@ -16,7 +16,9 @@ void main() {
       .then((value) {
     if (null != value && value.isNotEmpty) {
       Logger.log("first of configs: " + value[0].patchUrl!);
-      updateBundle(value[0].bundleId!);
+      for (var i = 0; i < value.length; i++) {
+        updateBundle(value[i].bundleId ?? "");
+      }
     }
   });
 }

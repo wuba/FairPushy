@@ -1,39 +1,70 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+#### 引入SDK
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```
+fair_pushy:
+   git:
+           url: https://github.com/wuba/FairPushy.git
+          path: sdk
 ```
 
-## Additional information
+#### 初始化SDK
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+FairPushy.init(
+      appID: '1001',
+      updateUrl: "https://fangfe.58.com/fairapp/module_patch_bundle",
+      debug: true);
+```
+
+<!--appid：web可视化平台中的项目id-->
+
+<!--updateUrl：接入方更新获取补丁config文件的服务器地址-->
+
+<!--debug：运行环境-->
+
+
+
+#### 调用模块更新api
+
+```
+FairPushy.updateBundle(bundleid: "6005")
+```
+
+ <!--bundleid可视化平台中模块对应的补丁唯一标识-->
+
+该方法内部实现补丁更新逻辑，包括补丁配置文件的获取，判断是否更新，补丁的下载，解压，缓存逻辑。
+
+
+
+#### 使用loading中间件
+
+```dart
+ FairPushyWidget(
+         bundleid: BundleConst.car,
+        // targetPageName: "car_cate"
+       targetWidgetBuilder: (context) => CarCatePage());
+```
+
+ <!--targetPageName：module间跳转时的目标界面pagename，传入pagename需要在FairPushy中进行界面的注册，详见example示例工程-->
+
+ <!--targetWidgetBuilder：module间跳转时的目标界面widget-->
+
+在module间跳转的时候，可以先跳SDK中提供的中间件，中间件中实现了补丁的更新逻辑，走完更新补丁逻辑，会把目标页替换成传入的targetWidget。
+
+
+
+#### getConfigs接口
+
+如果接入方在多module的工程结构下，想进app就下载所有的补丁文件，可以调用该接口获取appid对应项目下的所有补丁config信息，然后调用downloadConfig方法进行下载。
+
+```dart
+FairPushy.getConfigs("https://fangfe.58.com/fairapp/module_patch_app").then((value) {
+  if (null != value && value.isNotEmpty) {
+    for (var i = 0; i < value.length; i++) {
+      FairPushy.downloadConfig(value[i]);
+    }
+  }
+});
+```
+
+
