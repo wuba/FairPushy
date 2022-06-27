@@ -1,0 +1,28 @@
+name: fair_pushy
+description: fair hot update sdk.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  path_provider: ^2.0.4   #文件路径相关
+  archive: ^3.3.0  #压缩，解压缩相关
+  permission_handler: 6.0.1
+  dio: ^4.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: com.test.fair_pushy
+    iosBundleIdentifier: com.test.fair_pushy

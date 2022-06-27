@@ -1,0 +1,31 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.4
+  fair:  2.6.0-dev.1
+  fair_pushy:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: any
+  fair_compiler: ^1.1.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/fair_basic_config.json
+    - build/
+    - build/fair/
+
+

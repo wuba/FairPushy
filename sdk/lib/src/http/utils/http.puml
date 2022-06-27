@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User #red
+autonumber
+
+User -> HttpManager: download：urlPath，savePath，receiveProgress，isDuandianXuChuan，lastProgress，params，cancelToken，deleteOnError,lengthHeader,data,Options,callBack,Version
+
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
