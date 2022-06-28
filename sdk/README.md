@@ -5,8 +5,8 @@
 ```dart
 fair_pushy:
    git:
-   		url: https://github.com/wuba/FairPushy.git
-	  	path: FairPushy/sdk
+   	url: https://github.com/wuba/FairPushy.git
+	path: FairPushy/sdk
 ```
 
 
