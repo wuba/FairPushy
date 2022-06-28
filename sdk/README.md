@@ -5,13 +5,13 @@
 ```dart
 fair_pushy:
    git:
-   	url: https://github.com/wuba/FairPushy.git
-	path: FairPushy/sdk
+   		url: https://github.com/wuba/FairPushy.git
+	  	path: FairPushy/sdk
 ```
 
 
 
-### 初始化SDK
+#### 初始化SDK
 
 main()函数中调用初始化方法
 
@@ -22,15 +22,15 @@ FairPushy.init(
       debug: true);
 ```
 
-<!--appid：web可视化平台中的项目id-->
+> appid：web可视化平台中的项目id
+>
+> updateUrl：接入方获取补丁config文件的服务器地址
+>
+> debug：运行环境
 
-<!--updateUrl：接入方获取补丁config文件的服务器地址-->
-
-<!--debug：运行环境-->
 
 
-
-### 热更新api
+#### 热更新api
 
 1. ##### 单module更新工程
 
@@ -42,7 +42,7 @@ FairPushy.init(
    FairPushy.updateBundle(bundleid: "6005")
    ```
 
-    <!--bundleid可视化平台中模块对应的补丁唯一标识-->
+   > bundleid可视化平台中模块对应的补丁唯一标识
 
    
 
@@ -87,9 +87,9 @@ FairPushy.init(
        }));
    ```
 
-   <!--targetPageName：module间跳转时的目标界面pagename，传入pagename需要在FairPushy中进行界面的注册，详见example示例工程-->
-
-    <!--targetWidgetBuilder：module间跳转时的目标界面widget-->
+   > targetPageName：module间跳转时的目标界面pagename，传入pagename需要在FairPushy中进行界面的注册，详见example示例工程
+   >
+   > targetWidgetBuilder：module间跳转时的目标界面widget
 
    ​	
 
@@ -107,4 +107,4 @@ FairPushy.init(
    });
    ```
 
-   <!--url：业务方获取app所有资源文件的服务器地址-->
+   > url：业务方获取app所有资源文件的服务器地址
