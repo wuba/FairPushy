@@ -1,4 +1,4 @@
-#### 引入SDK
+### 引入SDK
 
 使用git或者引入源码的方式
 
@@ -11,7 +11,7 @@ fair_pushy:
 
 
 
-#### 初始化SDK
+### 初始化SDK
 
 main()函数中调用初始化方法
 
@@ -30,7 +30,7 @@ FairPushy.init(
 
 
 
-#### 热更新api
+### 热更新api
 
 1. ##### 单module更新工程
 
