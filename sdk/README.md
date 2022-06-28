@@ -2,7 +2,7 @@
 
 使用git或者引入源码的方式
 
-```
+```dart
 fair_pushy:
    git:
    		url: https://github.com/wuba/FairPushy.git
