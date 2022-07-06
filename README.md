@@ -49,7 +49,7 @@ FairPushy.init(
 
    > bundleid可视化平台中模块对应的补丁唯一标识
 
-   
+   接入方需自己实现loading过程，保证更新完再加载界面。
 
    b. 使用loading中间件，用FairPushyWidget替代根widget
 
@@ -113,6 +113,17 @@ FairPushy.init(
    ```
 
    > url：业务方获取app所有资源文件的服务器地址
+   
+   
+   #### Fair调用
+   调用FairPushy.getFilePath获取热更新文件
+   ```dart
+   FairWidget(
+    name: 'carcate',
+    path: FairPushy.getFilePath(bundleId: '6005', filename: 'car_cate')
+  );
+   ```
+   > filename：widget对应的文件名
 
 
 
