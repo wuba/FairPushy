@@ -12,6 +12,11 @@ void main() async {
       updateUrl: "https://fangfe.58.com/fairapp/module_patch_bundle",
       debug: true);
 
+  /// 如果使用了中间件，且中间件中目标页的传入方式是通过pageName的方式，则需要把目标页注册到FairPushy中，
+  /// {pagename : (context, params) => Widget()}的方式
+  FairPushy.registerPageBuilders(
+      {"dynamic_page": (context, params) => FairWidget(path: params?['path'])});
+
   runApplication();
 }
 

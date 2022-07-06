@@ -10,7 +10,6 @@ class CarDetailDelegate extends FairDelegate {
         bundleid: BundleConst.job,
         targetPageName: "dynamic_page",
         params: {
-          "name": "job_home",
           "path": FairPushy.getFilePath(
               bundleId: BundleConst.job, filename: 'job_job_module_job_home')
         },

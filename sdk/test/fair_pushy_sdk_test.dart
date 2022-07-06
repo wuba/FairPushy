@@ -15,9 +15,8 @@ void main() {
   FairPushy.getConfigs("https://fangfe.58.com/fairapp/module_patch_app")
       .then((value) {
     if (null != value && value.isNotEmpty) {
-      Logger.log("first of configs: " + value[0].patchUrl!);
       for (var i = 0; i < value.length; i++) {
-        updateBundle(value[i].bundleId ?? "");
+        FairPushy.downloadConfig(value[i]);
       }
     }
   });
