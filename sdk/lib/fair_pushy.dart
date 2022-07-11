@@ -13,8 +13,7 @@ class FairPushy {
   /// bundleConfigUrl : 获取bundle的config数据的url
   /// debug：是否是debug模式
   ///
-  static void init(
-      {required String appID, required String updateUrl, bool? debug}) {
+  static void init({String? appID, required String updateUrl, bool? debug}) {
     ProjectConfig product = ProjectConfig.instance;
     product.appID = appID;
     product.BUNDLE_PATCH_URL = updateUrl;
