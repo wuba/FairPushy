@@ -22,7 +22,7 @@ class Toast {
       //重新绘制UI，类似setState
       _overlayEntry?.markNeedsBuild();
     }
-    await Future.delayed(const Duration(microseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 2000));
 
     //2秒后 到底消失不消失
     if (DateTime.now().difference(_startedTime!).inMilliseconds >= _showTime) {
