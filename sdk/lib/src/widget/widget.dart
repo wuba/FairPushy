@@ -85,6 +85,7 @@ class _State extends State<FairPushyWidget> {
           Toast.toast(context, "解压失败啦~");
           break;
         default:
+          Toast.toast(context, "请求超时啦~");
       }
     }
   }

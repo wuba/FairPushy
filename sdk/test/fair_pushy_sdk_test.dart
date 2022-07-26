@@ -25,7 +25,7 @@ void main() {
 void updateBundle(String bundleId) {
   FairPushy.updateBundle(bundleId: bundleId).then((value) {
     if (value == Code.success) {
-      Logger.log(FairPushy.getFilePath(bundleId: bundleId));
+      Logger.log(FairPushy.getFilePath(bundleId: bundleId, filename: ''));
     } else {
       Logger.logi("update failed");
     }

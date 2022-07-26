@@ -54,7 +54,8 @@ class FairPushy {
   }
 
   /// 返回热更新文件路径
-  static String getFilePath({required String bundleId, String? filename}) {
+  static String getFilePath(
+      {required String bundleId, required String? filename}) {
     return Delegate.getFairPath(bundleId: bundleId, filename: filename);
   }
 

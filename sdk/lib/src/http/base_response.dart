@@ -1,7 +1,7 @@
-// ignore: constant_identifier_names
 const int Success = 0;
-// ignore: constant_identifier_names
 const int Failure = 1;
+const int TimeOut = 2;
+const int Cancel = 3;
 
 class FResponse<T> {
   String? url;
