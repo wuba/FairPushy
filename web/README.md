@@ -49,4 +49,4 @@ Fair 热更新平台是配合Fair 核心能力生态组成的一部分，可以�
 
 由于在开发时候使用的是内部的环境，所以相关的域名已经删除，如果想使用文件上传，可以修改源码填充自己公司的域名，或者使用在线编译功能。
 
-<img src="image-20220728190703622.png" alt="image-20220728190703622" style="zoom:100%;float:left" />
+<img src="images/image-20220728190703622.png" alt="image-20220728190703622" style="zoom:100%;float:left" />
