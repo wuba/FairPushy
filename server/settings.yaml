@@ -1,0 +1,6 @@
+# SettingsYaml settings file
+mysql_user: null
+mysql_password: null
+mysql_host: null
+mysql_port: null
+mysql_database: null

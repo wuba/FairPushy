@@ -1,128 +1,35 @@
 ![social preview](https://github.com/wuba/fair/blob/main/social-dark.png)
-FairPushy 是为 Flutter 设计的动态化框架的动态更新平台，通过 FairPushy 可视化平台实现项目的在编译和Fair资源补丁管理功能，使项目获得动态更新Fair补丁资源的能力。
+FairPushy 是基于Flutter+Dart三端一体化动态更新平台，为Flutter Fair设计的动态化框架提供动态分发能力。主要有Flutter Web平台、Dart Server和移动端SDK组成，使用统一的技术Dart语言开发。
 
 
-## 移动端SDK接入方式
-### 引入SDK
-
-使用git或者引入源码的方式
-
-```dart
-fair_pushy:
-   git:
-   	url: https://github.com/wuba/FairPushy.git
-	path: FairPushy/sdk
-```
+### 效果展示
+![social preview](https://github.com/wuba/fair/blob/main/best-ui-template.png)
 
 
+### 🚀 快速接入
 
-#### 初始化SDK
+1. 移动端SDK：
+2. Web平台：
+3. Server：
+4. Web平台部署文档
+5. DartServer部署文档：
 
-main()函数中调用初始化方法
+### 🕰未来规划
+* 资源状态
+  * 后续支持查看资源下发后的成功和失败率      
+* 开发环境
+  * 支持开发环境快速验证动态化效果     
+  * 测试、正式环境一键切换  
 
-```dart
-FairPushy.init(
-      appID: '1001',
-      updateUrl: "https://fangfe.58.com/fairapp/module_patch_bundle",
-      debug: true);
-```
+### 🔧一起共建
 
-> appid：web可视化平台中的项目id
->
-> updateUrl：接入方获取补丁config文件的服务器地址
->
-> debug：运行环境
+通过[Issue](https://github.com/wuba/FairPushy/issues)提交问题，贡献代码走Pull Request，管理员将对代码进行审核。
+
+对Fair感兴趣的小伙伴，可以加入交流群。
+| 微信              | 
+| ------------------|
+| ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7017d985152d4ec6865a3a96157fd9fd~tplv-k3u1fbpfcp-watermark.image?) |
 
 
 
-#### 热更新api
-
-1. ##### 单module更新工程
-
-   进入flutter工程就需要下载热更新文件，两种方式：
-
-   a. 直接调用updateBundle接口：
-
-   ```dart
-   FairPushy.updateBundle(bundleid: "6005")
-   ```
-
-   > bundleid可视化平台中模块对应的补丁唯一标识
-
-   接入方需自己实现loading过程，保证更新完再加载界面。
-
-   b. 使用loading中间件，用FairPushyWidget替代根widget
-
-   ```dart
-   MaterialApp(
-       title: 'Flutter Demo',
-       theme: ThemeData(
-         primarySwatch: Colors.blue,
-       ),
-       home: FairPushyWidget(
-         bundleid: '6005',
-         targetWidgetBuilder: (context) => HomePage(),
-   		));
-   ```
-
-   
-
-2. ##### 多module工程
-
-   分为进模块独立更新和进app全部更新的方式。
-
-   a. 进模块独立更新：
-
-   如果只使用更新API，业务方自己实现目标页loading过程，且需要目标页调用updateBundle：
-
-   ```dart
-   FairPushy.updateBundle(bundleid: "6005")
-   ```
-
-   
-
-   调用了loading中间件，需要在module间跳转的时候，可以先跳SDK中提供的中间件，中间件中实现了补丁的更新逻辑，走完更新补丁逻辑，会把目标页替换成传入的targetWidget。
-
-   ```dart
-   Navigator.push(context, MaterialPageRoute(builder: (context) {
-         return FairPushyWidget(
-             bundleid: BundleConst.car,
-           // targetPageName: "car_cate"
-             targetWidgetBuilder: (context) => CarCatePage());
-       }));
-   ```
-
-   > targetPageName：module间跳转时的目标界面pagename，传入pagename需要在FairPushy中进行界面的注册，详见example示例工程
-   >
-   > targetWidgetBuilder：module间跳转时的目标界面widget
-
-   ​	
-
-   b. 进app全部更新
-
-   如果接入方在多module的工程结构下，想进app就下载所有的补丁文件，可以调用getConfigs接口获取appid对应项目下的所有补丁config信息，然后调用downloadConfig方法进行下载。
-
-   ```dart
-   FairPushy.getConfigs("https://fangfe.58.com/fairapp/module_patch_app").then((value) {
-     if (null != value && value.isNotEmpty) {
-       for (var i = 0; i < value.length; i++) {
-         FairPushy.downloadConfig(value[i]);
-       }
-     }
-   });
-   ```
-
-   > url：业务方获取app所有资源文件的服务器地址
-   
-   
-   #### Fair调用
-   调用FairPushy.getFilePath获取热更新文件
-   ```dart
-   FairWidget(
-    name: 'carcate',
-    path: FairPushy.getFilePath(bundleId: '6005', filename: 'car_cate'));
-   ```
-   > filename：widget对应的文件名
-
-
-
+> 微信入群：请先添加58技术小秘书为好友，备注fair，小秘书邀请进群。

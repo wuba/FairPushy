@@ -108,3 +108,12 @@ FairPushy.init(
    ```
 
    > url：业务方获取app所有资源文件的服务器地址
+   
+ #### Fair调用
+   调用FairPushy.getFilePath获取热更新文件
+   ```dart
+   FairWidget(
+    name: 'carcate',
+    path: FairPushy.getFilePath(bundleId: '6005', filename: 'car_cate'));
+   ```
+   > filename：widget对应的文件名
