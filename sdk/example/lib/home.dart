@@ -1,5 +1,6 @@
 import 'package:example/car_module/car_cate.dart';
 import 'package:example/string_const.dart';
+import 'package:fair/fair.dart';
 import 'package:flutter/material.dart';
 import 'package:fair_pushy/fair_pushy.dart';
 import 'card.dart';
@@ -10,6 +11,8 @@ class HomePage extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return FairPushyWidget(
           bundleid: BundleConst.car,
+          // placeholder: (context) => Scaffold(body: Container()),
+          onError: (code) => print(code),
           targetWidgetBuilder: (context) => CarCatePage());
     }));
   }
