@@ -8,6 +8,8 @@ import 'toast.dart';
 两个module间的界面跳转中间件
 自动处理下载相关流程
 */
+typedef OnUpdateFailure = void Function(Code code);
+
 class FairPushyWidget extends StatefulWidget {
   //module唯一标识
   final String bundleid;
@@ -19,6 +21,10 @@ class FairPushyWidget extends StatefulWidget {
   final dynamic params;
   //占位widget，下载时的loading界面，可单个传入，也可在FairPushy中全局注入
   final WidgetBuilder? placeholder;
+  //请求发生错误时回调
+  final OnUpdateFailure? onError;
+  //是否显示错误toast，默认显示
+  final bool showErrorToast;
 
   const FairPushyWidget(
       {Key? key,
@@ -26,7 +32,9 @@ class FairPushyWidget extends StatefulWidget {
       this.targetPageName,
       this.targetWidgetBuilder,
       this.placeholder,
-      this.params})
+      this.params,
+      this.onError,
+      this.showErrorToast = true})
       : assert(!(targetPageName == null && targetWidgetBuilder == null),
             'pageName and routerWidget at least one exists'),
         super(key: key);
@@ -45,6 +53,9 @@ class _State extends State<FairPushyWidget> {
     super.didChangeDependencies();
 
     FairPushy.updateBundle(bundleId: widget.bundleid).then((code) {
+      if (widget.onError != null) {
+        widget.onError!(code);
+      }
       showToast(code);
       if (widget.targetWidgetBuilder != null) {
         _child = widget.targetWidgetBuilder!(context);
@@ -73,7 +84,7 @@ class _State extends State<FairPushyWidget> {
 
   //出错提示
   void showToast(Code code) {
-    if (code != Code.success) {
+    if (code != Code.success && widget.showErrorToast) {
       switch (code) {
         case Code.getConfigError:
           Toast.toast(context, "获取config文件出错啦~");
@@ -84,7 +95,15 @@ class _State extends State<FairPushyWidget> {
         case Code.unZipError:
           Toast.toast(context, "解压失败啦~");
           break;
+        case Code.downloadTimeOut:
+          Toast.toast(context, "下载超时啦~");
+          break;
+        case Code.getConfigTimeOut:
+          Toast.toast(context, "请求config超时啦~");
+          break;
         default:
+          Toast.toast(context, "未知错误");
+          break;
       }
     }
   }

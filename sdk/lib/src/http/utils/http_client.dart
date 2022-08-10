@@ -14,7 +14,6 @@ import 'permission_utils.dart';
 typedef OnProgress = void Function(int count, int toal);
 
 class HttpClient {
-  /*version、module_name等字段，从外部传入到params中，不要从这里传入*/
   static Future<FResponse<T>?> exec<T>(String url,
       {OnProgress? onProgress,
       Map<String, dynamic>? params,
@@ -25,9 +24,15 @@ class HttpClient {
     if (result == PermissionResult.GRANTED) {
       Dio dio = _initCert();
       var options = _initOptions();
-      var response = await dio.request(url,
-          queryParameters: params, options: options, cancelToken: token);
-      return _parse<T>(response, parser: parser);
+      try {
+        var response = await dio.request(url,
+            queryParameters: params, options: options, cancelToken: token);
+        return _parse<T>(response, parser: parser);
+      } on DioError catch (e) {
+        var response = FResponse<T>(url: url, code: TimeOut, e: e);
+        formatError(e, response);
+        return response;
+      }
     }
     return FResponse(url: url, e: Exception("请开启读写、网络权限"));
   }
@@ -79,22 +84,28 @@ class HttpClient {
       {Map<String, dynamic>? params, OnProgress? onProgress}) async {
     var dio = _initCert();
     var options = _initOptions();
-    var response = await dio.download(
-      url,
-      savePath,
-      queryParameters: params,
-      options: options,
-      onReceiveProgress: (count, total) {
-        if (onProgress != null) onProgress(count, total);
-      },
-    );
-    //成功还是失败
-    int code = response.statusCode == HttpStatus.ok ? Success : Failure;
-    return FResponse<String>(
-        url: url,
-        code: code,
-        data: savePath,
-        e: code == Success ? null : Exception(response.statusMessage));
+    try {
+      var response = await dio.download(
+        url,
+        savePath,
+        queryParameters: params,
+        options: options,
+        onReceiveProgress: (count, total) {
+          if (onProgress != null) onProgress(count, total);
+        },
+      );
+      //成功还是失败
+      int code = response.statusCode == HttpStatus.ok ? Success : Failure;
+      return FResponse<String>(
+          url: url,
+          code: code,
+          data: savePath,
+          e: code == Success ? null : Exception(response.statusMessage));
+    } on DioError catch (e) {
+      var response = FResponse<String>(url: url, code: TimeOut, e: e);
+      formatError(e, response);
+      return response;
+    }
   }
 
   static Future<String> _getPath(String savepath, String bundleId) async {
@@ -140,5 +151,27 @@ class HttpClient {
     List<Interceptor> list = List.filled(1, FairReqLogger(), growable: true);
     list.add(FairReqLogger());
     return list;
+  }
+
+  static void formatError(DioError e, FResponse response) {
+    if (e.type == DioErrorType.connectTimeout) {
+      Logger.logi("连接超时");
+      response.code = TimeOut;
+    } else if (e.type == DioErrorType.sendTimeout) {
+      Logger.logi("请求超时");
+      response.code = TimeOut;
+    } else if (e.type == DioErrorType.receiveTimeout) {
+      Logger.logi("响应超时");
+      response.code = TimeOut;
+    } else if (e.type == DioErrorType.response) {
+      Logger.logi("出现异常");
+      response.code = Failure;
+    } else if (e.type == DioErrorType.cancel) {
+      Logger.logi("请求取消");
+      response.code = Cancel;
+    } else {
+      Logger.logi("未知错误");
+      response.code = Failure;
+    }
   }
 }

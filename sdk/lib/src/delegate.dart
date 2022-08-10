@@ -10,10 +10,11 @@ import 'http/config_parser.dart';
 import 'files/archive_tools.dart' as archive;
 import 'log/logger.dart';
 
-//下载code
 enum Code {
   getConfigError, //获取config失败
+  getConfigTimeOut, //获取config超时
   downloadError, //下载失败
+  downloadTimeOut, //下载超时
   unZipError, //解压失败
   success, //成功
 }
@@ -34,8 +35,10 @@ class Delegate {
     CancelToken token = CancelToken();
     FResponse<Config>? response = await HttpClient.exec(url,
         params: params, parser: ConfigParser(), token: token);
-    if (Failure == response?.code || response?.data == null) {
-      return Code.getConfigError;
+    if (Success != response?.code || response?.data == null) {
+      return response?.code == TimeOut
+          ? Code.getConfigTimeOut
+          : Code.getConfigError;
     }
     return downloadConfig(response!.data!);
   }
@@ -67,7 +70,9 @@ class Delegate {
           version: config.bundleVersion);
       return updateCache ? Code.success : Code.unZipError;
     } else {
-      return Code.downloadError;
+      return response?.code == TimeOut
+          ? Code.downloadTimeOut
+          : Code.downloadError;
     }
   }
 
@@ -81,9 +86,7 @@ class Delegate {
     return response?.data;
   }
 
-  // ignore: constant_identifier_names
   static const String _Debug_suffix = '.fair.json';
-  // ignore: constant_identifier_names
   static const String _Release_suffix = '.fair.bin';
   /*
    * 根据bundleId获取widget路径
