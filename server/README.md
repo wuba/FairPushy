@@ -48,6 +48,8 @@ FairPushy工程可以直接运行启动测试服务仅需在控制台输入以�
 
 由于部分远端DB限制，目前需要手动创建表，提供以下创建语句和表结构：
 
+CREATE TABLE：[表结构](db_fair_dynamic_table.txt
+)
 
 #### 接口说明
 
