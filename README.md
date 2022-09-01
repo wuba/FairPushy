@@ -1,10 +1,5 @@
-![social preview](https://github.com/wuba/fair/blob/main/social-dark.png)
-FairPushy 是基于Flutter+Dart三端一体化动态更新平台，为Flutter Fair设计的动态化框架提供动态分发能力。主要有Flutter Web平台、Dart Server和移动端SDK组成，使用统一的技术Dart语言开发。
-
-
-### 效果展示
 ![social preview](https://github.com/wuba/fair/blob/main/best-ui-template.png)
-
+FairPushy 是基于Flutter+Dart三端一体化动态更新平台，为Flutter Fair设计的动态化框架提供动态分发能力。主要有Flutter Web平台、Dart Server和移动端SDK组成，使用统一的技术Dart语言开发。
 
 ### 🚀 快速接入
 
@@ -24,11 +19,10 @@ FairPushy 是基于Flutter+Dart三端一体化动态更新平台，为Flutter Fa
 ### 🔧一起共建
 
 通过[Issue](https://github.com/wuba/FairPushy/issues)提交问题，贡献代码走Pull Request，管理员将对代码进行审核。
-
 对Fair感兴趣的小伙伴，可以加入交流群。
 | 微信              | 
 | ------------------|
-| ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7017d985152d4ec6865a3a96157fd9fd~tplv-k3u1fbpfcp-watermark.image?) |
+| <img width="280" height="350" src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7017d985152d4ec6865a3a96157fd9fd~tplv-k3u1fbpfcp-watermark.image?> |
 
 
 
