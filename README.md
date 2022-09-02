@@ -1,6 +1,10 @@
 ![social preview](https://github.com/wuba/fair/blob/main/best-ui-template.png)
 FairPushy 是基于Flutter+Dart三端一体化动态更新平台，为Flutter Fair设计的动态化框架提供动态分发能力。主要有Flutter Web平台、Dart Server和移动端SDK组成，使用统一的技术Dart语言开发。
 
+Fair是为Flutter设计的动态化框架，通过Fair Compiler工具对原生Dart源文件的自动转化，使项目获得动态更新Widget的能力。
+* 地址传送：https://github.com/wuba/fair
+* 在线文档：https://fair.58.com/
+
 ### 🚀 快速接入
 
 1. 移动端SDK：[接入文档](https://github.com/wuba/FairPushy/blob/main/web/README.md)
