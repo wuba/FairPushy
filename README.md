@@ -7,8 +7,8 @@ Fair是为Flutter设计的动态化框架，通过Fair Compiler工具对原生Da
 
 ### 🚀 快速接入
 
-1. 移动端SDK：[接入文档](https://github.com/wuba/FairPushy/blob/main/web/README.md)
-2. Web平台：[接入文档](https://github.com/wuba/FairPushy/blob/main/sdk/README.md)
+1. 移动端SDK：[接入文档](https://github.com/wuba/FairPushy/blob/main/sdk/README.md)
+2. Web平台：[接入文档](https://github.com/wuba/FairPushy/blob/main/web/README.md)
 3. Server：[接入文档](https://github.com/wuba/FairPushy/blob/main/server/README.md)
 4. Web平台部署文档：[部署文档](https://github.com/wuba/FairPushy/blob/main/web/%E5%9F%BA%E4%BA%8EDocker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2flutter%20web%E9%A1%B9%E7%9B%AE%E5%A4%A7%E4%BD%93%E6%B5%81%E7%A8%8B.md)
 5. DartServer部署文档：[部署文档](https://github.com/wuba/FairPushy/blob/main/server/%E5%9F%BA%E4%BA%8EDocker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2dart%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%A1%B9%E7%9B%AE%E5%A4%A7%E4%BD%93%E6%B5%81%E7%A8%8B.md)
