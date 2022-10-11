@@ -1,5 +1,7 @@
 export 'src/project.dart';
 export 'src/widget/widget.dart';
+export 'src/dev_tool/fair_dev_tool.dart';
+export 'src/dev_tool/model/dev_tool_model.dart';
 import 'package:flutter/material.dart';
 import 'src/log/logger.dart';
 import 'src/delegate.dart';

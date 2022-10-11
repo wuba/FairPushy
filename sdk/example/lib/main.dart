@@ -18,6 +18,23 @@ void main() async {
   FairPushy.registerPageBuilders(
       {"dynamic_page": (context, params) => FairWidget(path: params?['path'])});
 
+  FairDevTools.config = FairDevConfig()
+    ..addEnv(
+        OnlineEnvInfo(
+            envName: "环境1",
+            updateUrl: "https://fangfe.58.com/fairapp/module_patch_bundle",
+            readOnly: true
+        )
+    )
+    ..addEnv(
+        OnlineEnvInfo(
+            envName: "环境2",
+            updateUrl: "",
+            readOnly: false
+        )
+    );
+  FairDevTools.fairWidgetHandler = (path) => FairWidget(path: path);
+
   runApplication();
 }
 

@@ -12,9 +12,9 @@ const String _pushy_floder_path = "fairPushy";
 class FairFile {
   //获取下载文件的位置
   static Future<String> getDownloadSavePath(
-      {@required String? moduleName}) async {
+      {@required String? moduleName, bool withZipSuffix = true}) async {
     String? path = await getSaveFilesFolderPath();
-    return "$path/$moduleName.zip";
+    return "$path/${moduleName}${withZipSuffix ? ".zip" : ""}";
   }
 
   /// 获取文档目录文件

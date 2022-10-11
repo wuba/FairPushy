@@ -1,6 +1,5 @@
 import 'package:example/car_module/car_cate.dart';
 import 'package:example/string_const.dart';
-import 'package:fair/fair.dart';
 import 'package:flutter/material.dart';
 import 'package:fair_pushy/fair_pushy.dart';
 import 'card.dart';
@@ -37,16 +36,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Row(children: [
-        GestureDetector(
-          onTap: () => jumpCarModule(context),
-          child: FCard(bgColor: Color.fromRGBO(233, 248, 244, 1), title: '二手车'),
-        ),
-        GestureDetector(
-          onTap: () => jumpJobModule(context),
-          child: FCard(bgColor: Color.fromRGBO(233, 248, 244, 1), title: '招聘'),
-        ),
-      ]),
+      child: Column(
+        children: [
+          Row(children: [
+            GestureDetector(
+              onTap: () => jumpCarModule(context),
+              child: FCard(bgColor: Color.fromRGBO(233, 248, 244, 1), title: '二手车'),
+            ),
+            GestureDetector(
+              onTap: () => jumpJobModule(context),
+              child: FCard(bgColor: Color.fromRGBO(233, 248, 244, 1), title: '招聘'),
+            ),
+          ]),
+          MaterialButton(onPressed: () {
+            FairDevTools.openDevPage(context);
+          },
+          child: Text("开发者选项"),)
+        ],
+      ),
     ));
   }
 }

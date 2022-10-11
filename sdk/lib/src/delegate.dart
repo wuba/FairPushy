@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:fair_pushy/fair_pushy.dart';
 import 'package:fair_pushy/src/files/cache.dart';
@@ -5,6 +7,7 @@ import 'package:fair_pushy/src/http/base_response.dart';
 import 'package:fair_pushy/src/http/config_list_parser.dart';
 import 'package:fair_pushy/src/http/entity/config.dart';
 import 'files/fair_file.dart';
+import 'files/file_util.dart';
 import 'http/utils/http_client.dart';
 import 'http/config_parser.dart';
 import 'files/archive_tools.dart' as archive;
@@ -110,4 +113,44 @@ class Delegate {
     }
     return;
   }
+
+  static Future<Code> updateDebugFW(String host, {String? port}) async {
+    var downloadDebugFile = await HttpClient.downloadDebugFile("http://$host:${port ?? "8080"}/fair_patch.zip");
+    if (downloadDebugFile?.code == Success && downloadDebugFile?.data != null) {
+      var savePath = await FairFile.getSaveFilesFolderPath();
+      deleteDir("$savePath/debug", recursive: true);
+      var unZipAndUpdateCache = await archive.unZipAndUpdateCache(
+          zipPath: downloadDebugFile?.data.toString(), bundleId: "debug");
+      return unZipAndUpdateCache ? Code.success : Code.unZipError;
+    } else {
+      return downloadDebugFile?.code == TimeOut
+          ? Code.downloadTimeOut
+          : Code.downloadError;
+    }
+  }
+
+  static Future<List<String>> getLocalEnvPageList() async {
+    final debugDirectoryPath = await FairFile.getDownloadSavePath(
+        moduleName: "debug", withZipSuffix: false);
+    return _getPageList(debugDirectoryPath);
+  }
+
+  static Future<List<String>> getBundlePageList(String bundleId) async {
+    final bundleDirectory = await FairFile.getDownloadSavePath(
+        moduleName: bundleId, withZipSuffix: false);
+    return _getPageList(bundleDirectory);
+  }
+
+  static Future<List<String>> _getPageList(String directory) async {
+    final pageList = <String>[];
+    for (final file in Directory(directory).listSync()) {
+      final filePath = file.path;
+      if (filePath.endsWith(_Debug_suffix)) {
+        final split = filePath.split("/");
+        pageList.add(split[split.length - 1].replaceAll(_Debug_suffix, ""));
+      }
+    }
+    return pageList;
+  }
+
 }

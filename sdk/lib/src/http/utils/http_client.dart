@@ -80,6 +80,21 @@ class HttpClient {
     return FResponse(e: Exception("请开启读写、网络权限"));
   }
 
+  /**
+   * 下载Local环境下的测试文件
+   */
+  static Future<FResponse?> downloadDebugFile(String url,
+      {OnProgress? onProgress}) async {
+    var result =
+    await PermissionUtils().checkPermission(PermissionEnum.FILE_WRITE);
+    if (result == PermissionResult.GRANTED) {
+      var savePath = await _getPath("", "debug");
+      Logger.logi("path: " + savePath);
+      return await _down(url, savePath, onProgress: onProgress);
+    }
+    return FResponse(e: Exception("请开启读写、网络权限"));
+  }
+
   static Future<FResponse<String>?> _down(String url, String savePath,
       {Map<String, dynamic>? params, OnProgress? onProgress}) async {
     var dio = _initCert();
