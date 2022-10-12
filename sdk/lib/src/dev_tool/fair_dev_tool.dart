@@ -2,7 +2,7 @@ import 'package:fair_pushy/src/dev_tool/model/dev_tool_model.dart';
 import 'package:fair_pushy/src/dev_tool/ui/dev_tool_page.dart';
 import 'package:flutter/material.dart';
 
-typedef Widget FairWidgetHandler(String path);
+typedef Widget FairWidgetHandler(String name, String path);
 
 class FairDevTools {
   static FairDevConfig? _config;

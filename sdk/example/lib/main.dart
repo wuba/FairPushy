@@ -19,7 +19,8 @@ void main() async {
       {"dynamic_page": (context, params) => FairWidget(path: params?['path'])});
 
   ///注入FairWidget的构建回调
-  FairDevTools.fairWidgetBuilder = (path) => FairWidget(path: path);
+  FairDevTools.fairWidgetBuilder =
+      (name, path) => FairWidget(name: name, path: path);
 
   ///开发者选项线上环境配置
   FairDevTools.config = FairDevConfig()

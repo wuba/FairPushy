@@ -87,7 +87,7 @@ class _BundleListPageState extends State<BundleListPage> {
                 onPressed: () {
                   Navigator.of(context)
                       .push<void>(MaterialPageRoute(builder: (context) {
-                    return FairDevTools.fairWidgetBuilder(FairPushy.getFilePath(
+                    return FairDevTools.fairWidgetBuilder(item, FairPushy.getFilePath(
                         bundleId: widget.bundleId ?? "debug", filename: item));
                   }));
                 },
