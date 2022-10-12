@@ -132,7 +132,7 @@ FairDevTools.fairWidgetBuilder = (path) => FairWidget(path: path);
 ```dart
 FairDevTools.openDevPage(context);
 ```
-<img src="images/1.png" alt="image1" float:left" />
+<img src="images/1.png" alt="image1" style="zoom:40%; float:left" />
 
 2. ##### 本地环境调试
 本地调试建议配合[faircli工具](https://pub.dev/packages/faircli/install)
@@ -142,7 +142,7 @@ FairDevTools.openDevPage(context);
 
 输入本机地址即可快速预览fair打包产物，摇一摇可唤出Reload的弹窗，点击重新加载
 
-<img src="images/2.gif" alt="gif2" float:left" />
+<img src="images/2.gif" alt="gif2" style="zoom:40%; float:left" />
 
 3. ##### 线上环境调试
 线上环境配置
