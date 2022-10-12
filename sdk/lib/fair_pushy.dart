@@ -15,10 +15,10 @@ class FairPushy {
   /// bundleConfigUrl : 获取bundle的config数据的url
   /// debug：是否是debug模式
   ///
-  static void init({String? appID, required String updateUrl, bool? debug}) {
+  static void init({String? appID, String? updateUrl, bool? debug}) {
     ProjectConfig product = ProjectConfig.instance;
     product.appID = appID;
-    product.BUNDLE_PATCH_URL = updateUrl;
+    product.BUNDLE_PATCH_URL = updateUrl ?? "";
     product.isDebug = debug ?? false;
     Delegate.loadFolderPath();
   }
@@ -27,7 +27,7 @@ class FairPushy {
   /// '''
   /// 先获取bundleid对应的补丁config，再调用downloadConfig
   /// '''
-  static Future<Code> updateBundle({required String bundleId}) {
+  static Future<Code> updateBundle({String? url, required String bundleId}) {
     return Delegate.updateFW(bundleId: bundleId);
   }
 

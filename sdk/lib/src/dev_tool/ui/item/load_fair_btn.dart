@@ -15,8 +15,9 @@ class LoadFairBtn extends StatelessWidget {
     String selectMode = devToolMode.selectMode.value;
     Code code;
     if (selectMode == DevToolMode.MODE_ONLINE) {
-      code =
-          await devToolMode.loadFairAssetsOnline(devToolMode.bundleId.value!);
+      code = await devToolMode.loadFairAssetsOnline(
+          devToolMode.selectOnlineEnv.value.updateUrl,
+          devToolMode.bundleId.value!);
       if (code == Code.success) {
         SPUtils.recordBundleIdByEnv(
             devToolMode.bundleId, devToolMode.selectOnlineEnv.value.envName);

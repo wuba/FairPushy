@@ -27,16 +27,16 @@ enum Code {
  */
 class Delegate {
   //处理配置请求，module下载等
-  static Future<Code> updateFW({required String bundleId}) async {
+  static Future<Code> updateFW({String? url, required String bundleId}) async {
     await Delegate.loadFolderPath();
-    String url = ProjectConfig.instance.BUNDLE_PATCH_URL;
+    String updateUrl = url == null ? ProjectConfig.instance.BUNDLE_PATCH_URL : url;
     var params = <String, dynamic>{};
     params.putIfAbsent("bundleId", () => bundleId);
     if (ProjectConfig.instance.isDebug) {
       params.putIfAbsent("test", () => true);
     }
     CancelToken token = CancelToken();
-    FResponse<Config>? response = await HttpClient.exec(url,
+    FResponse<Config>? response = await HttpClient.exec(updateUrl,
         params: params, parser: ConfigParser(), token: token);
     if (Success != response?.code || response?.data == null) {
       return response?.code == TimeOut

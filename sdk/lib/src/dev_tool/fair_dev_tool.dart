@@ -13,12 +13,12 @@ class FairDevTools {
     _config = value;
   }
 
-  static FairWidgetHandler? _fairWidgetHandler;
+  static FairWidgetHandler? _fairWidgetBuilder;
 
-  static get fairWidgetHandler => _fairWidgetHandler;
+  static get fairWidgetBuilder => _fairWidgetBuilder;
 
-  static set fairWidgetHandler(value) {
-    _fairWidgetHandler = value;
+  static set fairWidgetBuilder(value) {
+    _fairWidgetBuilder = value;
   }
 
   static void openDevPage(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:fair_pushy/fair_pushy.dart';
 import 'package:fair_pushy/src/delegate.dart';
 import 'package:fair_pushy/src/dev_tool/utils/sp_utils.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class DevToolMode extends InheritedWidget {
   ValueNotifier<SelectParamsInfo?> selectParamsNotifier = ValueNotifier(null);
 
   ///所有模式
-  final List<String> modeList = const [MODE_ONLINE, MODE_LOCAL];
+  List<String> modeList = [MODE_ONLINE, MODE_LOCAL];
 
   ///环境列表，需要代码中配置
   Set<OnlineEnvInfo> envList = {};
@@ -72,8 +73,14 @@ class DevToolMode extends InheritedWidget {
   }
 
   void init() async {
-    _selectMode.value = await SPUtils.getLastSelectMode();
     _localModeHost.value = await SPUtils.getLocalHost();
+    if (envList.length > 0) {
+      modeList = [MODE_ONLINE, MODE_LOCAL];
+      _selectMode.value = await SPUtils.getLastSelectMode();
+    } else {
+      modeList = [MODE_LOCAL];
+      _selectMode.value = MODE_LOCAL;
+    }
     notifyParamsChanged();
   }
 
@@ -132,10 +139,10 @@ class DevToolMode extends InheritedWidget {
     return code;
   }
 
-  Future<Code> loadFairAssetsOnline(String bundleId) async {
+  Future<Code> loadFairAssetsOnline(String url, String bundleId) async {
     _isLoadingFairAssets = true;
     notifyParamsChanged();
-    final code = await Delegate.updateFW(bundleId: bundleId);
+    final code = await Delegate.updateFW(url: url, bundleId: bundleId);
     _isLoadingFairAssets = false;
     if (code == Code.success) {
       notifyParamsChanged(hasLoadedFairAssets: true);

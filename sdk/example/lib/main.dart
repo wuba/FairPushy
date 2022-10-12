@@ -18,6 +18,10 @@ void main() async {
   FairPushy.registerPageBuilders(
       {"dynamic_page": (context, params) => FairWidget(path: params?['path'])});
 
+  ///注入FairWidget的构建回调
+  FairDevTools.fairWidgetBuilder = (path) => FairWidget(path: path);
+
+  ///开发者选项线上环境配置
   FairDevTools.config = FairDevConfig()
     ..addEnv(
         OnlineEnvInfo(
@@ -33,7 +37,6 @@ void main() async {
             readOnly: false
         )
     );
-  FairDevTools.fairWidgetHandler = (path) => FairWidget(path: path);
 
   runApplication();
 }
