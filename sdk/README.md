@@ -132,8 +132,7 @@ FairDevTools.fairWidgetBuilder = (path) => FairWidget(path: path);
 ```dart
 FairDevTools.openDevPage(context);
 ```
-![](images/1.png =360x780)
-<img src="images/1.png" alt="image1" style="zoom:40%; float:left" />
+<img src="images/1.png" alt="image1" width = "360" height = "780" float:left" />
 
 2. ##### 本地环境调试
 本地调试建议配合[faircli工具](https://pub.dev/packages/faircli/install)
