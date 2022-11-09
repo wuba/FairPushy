@@ -40,7 +40,15 @@ class Delegate {
           ? Code.getConfigTimeOut
           : Code.getConfigError;
     }
+    //如果后端下发的bundleid是空的，用接口传进来的
+    if(_stringISNull(response?.data?.bundleId)) {
+      response?.data?.bundleId = bundleId;
+    }
     return downloadConfig(response!.data!);
+  }
+
+  static bool _stringISNull(String? str) {
+    return str == null || str.isEmpty || (str == "null");
   }
 
   static Future<Code> downloadConfig(Config config) async {

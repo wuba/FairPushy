@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   path_provider: ^2.0.4   #文件路径相关
   archive: ^3.3.0  #压缩，解压缩相关
-  permission_handler: ^6.0.1
+  permission_handler: 6.0.1
   dio: ^4.0.6
 
 dev_dependencies:
