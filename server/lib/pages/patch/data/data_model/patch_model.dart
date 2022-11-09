@@ -94,14 +94,14 @@ class Patch extends Entity<Patch> implements HandyJSON {
   late String? flutterVersion;
 
   Map<String, dynamic> toJson() => {
-        'app_id': app_id,
-        'bundle_id': bundle_id,
-        'patch_url': patch_url,
+        'appId': app_id,
+        'bundleId': bundle_id,
+        'patchUrl': patch_url,
         'status': status,
         'remark': remark,
-        'bundle_name': bundleName,
-        'bundle_version': bundleVersion,
-        'update_time': update_time,
+        'bundleName': bundleName,
+        'bundleVersion': bundleVersion,
+        'updateTime': update_time,
         'patchGitUrl': patchGitUrl,
         'patchGitBranch': patchGitBranch,
         'flutterVersion': flutterVersion,
