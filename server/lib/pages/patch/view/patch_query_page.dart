@@ -26,7 +26,7 @@ class GetPatchPage extends FairServiceWidget {
         final dao = PatchDao();
         var rows = await dao.searchBundleId(bundleId);
         for (int i = 0; i < rows.length; i++) {
-          list = rows[i].toPatchJson();
+          list = rows[i].toJson();
         }
       });
     } catch (e) {
