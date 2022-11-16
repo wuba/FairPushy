@@ -115,7 +115,11 @@ class Delegate {
   }
 
   static Future<Code> updateDebugFW(String host, {String? port}) async {
-    var downloadDebugFile = await HttpClient.downloadDebugFile("http://$host:${port ?? "8080"}/fair_patch.zip");
+    return updateDebugFWByUrl("http://$host:${port ?? "8080"}/fair_patch.zip");
+  }
+
+  static Future<Code> updateDebugFWByUrl(String url) async {
+    var downloadDebugFile = await HttpClient.downloadDebugFile(url);
     if (downloadDebugFile?.code == Success && downloadDebugFile?.data != null) {
       var savePath = await FairFile.getSaveFilesFolderPath();
       deleteDir("$savePath/debug", recursive: true);

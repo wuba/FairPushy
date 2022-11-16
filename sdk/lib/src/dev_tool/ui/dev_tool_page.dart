@@ -1,5 +1,6 @@
 import 'package:fair_pushy/src/dev_tool/fair_dev_tool.dart';
 import 'package:fair_pushy/src/dev_tool/ui/item/load_fair_btn.dart';
+import 'package:fair_pushy/src/dev_tool/ui/item/scan_qr_code_btn.dart';
 import 'package:flutter/material.dart';
 
 import '../model/dev_tool_model.dart';
@@ -45,6 +46,9 @@ class _DevToolPageState extends State<DevToolPage> {
 
         ///加载按钮
         LoadFairBtn(),
+
+        ///Fair云开发平台扫码
+        ScanQrCodeBtn(),
       ],
     );
   }
