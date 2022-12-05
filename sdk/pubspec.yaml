@@ -18,7 +18,7 @@ dependencies:
   #摇一摇重力感应
   sensors_plus: ^1.4.1
   #扫描二维码
-  qr_code_scanner: ^1.0.1
+  qr_code_scanner: any
 
 dev_dependencies:
   flutter_test:
