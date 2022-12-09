@@ -62,6 +62,10 @@ class _ScanQrCodePageState extends State<ScanQrCodePage> {
     setState(() {
       this.controller = controller;
     });
+    if (Platform.isAndroid) {
+      controller.pauseCamera();
+    }
+    controller.resumeCamera();
     controller.scannedDataStream.listen((scanData) async {
       if (scanData.code?.isNotEmpty == true && acceptResult) {
         Map<String, dynamic> jsonObj = jsonDecode(scanData.code!);
