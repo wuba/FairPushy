@@ -122,7 +122,7 @@ class Delegate {
     var downloadDebugFile = await HttpClient.downloadDebugFile(url);
     if (downloadDebugFile?.code == Success && downloadDebugFile?.data != null) {
       var savePath = await FairFile.getSaveFilesFolderPath();
-      deleteDir("$savePath/debug", recursive: true);
+      await deleteDir("$savePath/debug", recursive: true);
       var unZipAndUpdateCache = await archive.unZipAndUpdateCache(
           zipPath: downloadDebugFile?.data.toString(), bundleId: "debug");
       return unZipAndUpdateCache ? Code.success : Code.unZipError;

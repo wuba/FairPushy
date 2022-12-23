@@ -1,12 +1,12 @@
 import 'dart:io';
 
-bool deleteDir(String path, {recursive: false}) {
+Future<bool> deleteDir(String path, {recursive: false}) async {
   if (File(path).existsSync()) {
     throw Exception("This is a file path not a directory path");
   }
   var directory = Directory(path);
   try {
-    directory.delete(recursive: recursive);
+    await directory.delete(recursive: recursive);
     return true;
   } catch (error) {
     throw Exception(error.toString());
