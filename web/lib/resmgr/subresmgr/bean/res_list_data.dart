@@ -53,14 +53,14 @@ class ResListItemData {
   });
 
   ResListItemData.fromJson(Map<String, dynamic> json) {
-    app_id = json['app_id'];
-    bundle_id = json['bundle_id'];
-    patch_url = json['patch_url'];
+    app_id = json['appId'];
+    bundle_id = json['bundleId'];
+    patch_url = json['patchUrl'];
     status = json['status'];
     remark = json['remark'];
-    bundle_name = json['bundle_name'];
-    bundle_version = json['bundle_version'];
-    update_time = json['update_time'];
+    bundle_name = json['bundleName'];
+    bundle_version = json['bundleVersion'];
+    update_time = json['updateTime'];
     patchGitUrl = json['patchGitUrl'];
     patchGitBranch = json['patchGitBranch'];
     flutterVersion = json['flutterVersion'];
