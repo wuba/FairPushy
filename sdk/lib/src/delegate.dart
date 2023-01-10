@@ -89,17 +89,17 @@ class Delegate {
     return response?.data;
   }
 
-  static const String _Debug_suffix = '.fair.json';
-  static const String _Release_suffix = '.fair.bin';
+  static const String Debug_suffix = '.fair.json';
+  static const String Release_suffix = '.fair.bin';
   /*
    * 根据bundleId获取widget路径
    */
   static String getFairPath({required String bundleId, String? filename}) {
     if (filename != null &&
-        !filename.endsWith(_Debug_suffix) &&
-        !filename.endsWith(_Release_suffix)) {
+        !filename.endsWith(Debug_suffix) &&
+        !filename.endsWith(Release_suffix)) {
       filename = filename +
-          (ProjectConfig.instance.isDebug ? _Debug_suffix : _Release_suffix);
+          (ProjectConfig.instance.isDebug ? Debug_suffix : Release_suffix);
     }
     String folderpath = '$_filesFolderPath/$bundleId/${(filename ?? "")}';
     return folderpath;
@@ -149,9 +149,8 @@ class Delegate {
     final pageList = <String>[];
     for (final file in Directory(directory).listSync()) {
       final filePath = file.path;
-      if (filePath.endsWith(_Debug_suffix)) {
-        final split = filePath.split("/");
-        pageList.add(split[split.length - 1].replaceAll(_Debug_suffix, ""));
+      if (filePath.endsWith(Debug_suffix) || filePath.endsWith(Release_suffix)) {
+        pageList.add(filePath);
       }
     }
     return pageList;

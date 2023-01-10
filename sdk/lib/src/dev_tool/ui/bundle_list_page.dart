@@ -87,8 +87,7 @@ class _BundleListPageState extends State<BundleListPage> {
                 onPressed: () {
                   Navigator.of(context)
                       .push<void>(MaterialPageRoute(builder: (context) {
-                    return FairDevTools.fairWidgetBuilder(item, FairPushy.getFilePath(
-                        bundleId: widget.bundleId ?? "debug", filename: item));
+                    return FairDevTools.fairWidgetBuilder(getPageName(item), item);
                   }));
                 },
                 child: Container(
@@ -100,7 +99,7 @@ class _BundleListPageState extends State<BundleListPage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            item,
+                            getPageName(item),
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                                 decoration: TextDecoration.none,
@@ -123,6 +122,20 @@ class _BundleListPageState extends State<BundleListPage> {
       ),
     );
   }
+
+  String getPageName(path) {
+    final split = path.split("/");
+    var pageSuffix;
+    if (path.endsWith(Delegate.Debug_suffix)) {
+      pageSuffix = Delegate.Debug_suffix;
+    } else if (path.endsWith(Delegate.Release_suffix)) {
+      pageSuffix = Delegate.Release_suffix;
+    } else {
+      return path;
+    }
+    return split[split.length - 1].replaceAll(pageSuffix, "");
+  }
+
 }
 
 class RouteItem {
